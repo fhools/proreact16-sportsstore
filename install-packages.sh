@@ -1,0 +1,9 @@
+npm install bootstrap
+npm install @fortawesome/fontawesome-free
+npm install redux
+npm install react-redux
+npm install react-router-dom
+npm install axios
+npm install graphql
+npm install apollo-boost
+npm install @apollo/client 
