@@ -1,6 +1,11 @@
 import { CategoryNavigation } from "./CategoryNavigation";
 import { ProductList } from "./ProductList";
 import { CartSummary } from "./CartSummary";
+import { ProductPageConnector } from "./ProductPageConnector";
+import { PaginationControls } from "../PaginationControls";
+
+const ProductPages = ProductPageConnector(PaginationControls);
+
 export function Shop(props) {
 
     function handleAddToCart(...args) {
@@ -21,6 +26,7 @@ export function Shop(props) {
                     <CategoryNavigation baseUrl="/shop/products" categories={props.categories}></CategoryNavigation>
                 </div>
                 <div className="col-9 p-2">
+                    <ProductPages/>
                     <ProductList products={props.products} addToCart={handleAddToCart}></ProductList>
                 </div>
             </div>

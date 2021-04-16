@@ -7,6 +7,7 @@ import { DataTypes } from "../data/Types";
 import { Shop } from "./Shop";
 import { addToCart, updateCartQuantity, removeFromCart, clearCart } from "../data/CartActionCreators";
 import { CartDetails } from "./CartDetails";
+import { DataGetter } from "../data/DataGetter";
 const mapStateToProps = (dataStore) => ({
     ...dataStore
 });
@@ -15,10 +16,10 @@ const mapDispatchToProps = {
     loadData, addToCart, updateCartQuantity, removeFromCart, clearCart
 };
 
-const filterProducts = (products = [], category) => 
-    (!category || category === "All")
-    ? products
-    : products.filter(p => p.category.toLowerCase()  === category.toLowerCase());
+// const filterProducts = (products = [], category) => 
+//     (!category || category === "All")
+//     ? products
+//     : products.filter(p => p.category.toLowerCase()  === category.toLowerCase());
 
 
 // From react-router documents.
@@ -39,22 +40,25 @@ const filterProducts = (products = [], category) =>
 */
 export const ShopConnector = connect(mapStateToProps, mapDispatchToProps)(
     function (props) {
+        const { loadData } = props;
         useEffect(() => {
-         props.loadData(DataTypes.CATEGORIES);
-         props.loadData(DataTypes.PRODUCTS);
-        });
+         loadData(DataTypes.CATEGORIES);
+        }, [loadData]);
 
         return (
             <Switch>
-                <Route path="/shop/products/:category?" 
+                <Redirect from="/shop/products/:category"
+                    to="/shop/products/:category/1" exact= {true} />
+                <Route path={"/shop/products/:category/:page"}
                     render={ (routeProps) =>
-                         <Shop {...props } {...routeProps}
-                            products={filterProducts(props.products, 
-                                routeProps.match.params.category)} />} />
+                        <DataGetter {...props} {...routeProps}>
+                            <Shop {...props } {...routeProps} />
+                        </DataGetter>
+                    } />
                 <Route path="/shop/cart" 
                     render = { (routeProps) => 
                         <CartDetails {...props} {...routeProps} />} />
-                <Redirect to="/shop/products" />
+                <Redirect to="/shop/products/all/1" />
             </Switch>
         );
     });
