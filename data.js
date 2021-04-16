@@ -1,3 +1,4 @@
+/*
 module.exports = function () {
     return {
         categories: ["Watersports", "Soccer", "Chess"],
@@ -12,5 +13,31 @@ module.exports = function () {
                 description: "Gold-plated, diamond-studded King", price: 12000 }
          ],
          orders: []
+    }
+}
+*/
+var faker = require("faker");
+var categories = ["Watersports", "Soccer", "Chess", "Running"];
+function generateData() {
+    var data = [];
+
+    faker.seed(100);
+    for (let i = 1; i <= 503; i++) {
+        var category = faker.helpers.randomize(categories);
+        data.push({
+            id: i,
+            name: faker.commerce.productName(),
+            category: category,
+            description: `${category}: ${faker.lorem.sentence(3)}`,
+            price: Number(faker.commerce.price())
+        })
+    }
+    return data;
+}
+module.exports = function () {
+    return {
+        categories: categories,
+        products: generateData(),
+        orders: []
     }
 }

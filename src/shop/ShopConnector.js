@@ -21,6 +21,22 @@ const filterProducts = (products = [], category) =>
     : products.filter(p => p.category.toLowerCase()  === category.toLowerCase());
 
 
+// From react-router documents.
+/* There are 3 ways to render components with Route, ordered from lowest to
+    highest precedence.
+    - Route component prop
+        <Route path="/foo" component={Foo}>
+    - Route render prop
+        Use this if you have an inline function
+        <Route path="/foo" render={() => <Foo/>}>
+    - Route  children prop
+        <Route path="/foo" children={(match) => <Foo className={match? "active":}/>}>
+
+    Each of the 3 methods will be passed the following props:
+    routeProp.match
+    routeProp.history
+    routeProp.location
+*/
 export const ShopConnector = connect(mapStateToProps, mapDispatchToProps)(
     function (props) {
         useEffect(() => {

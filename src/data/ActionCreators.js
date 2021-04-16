@@ -1,13 +1,10 @@
 import { ActionTypes } from "./Types";
-import {data as phData} from "./placeholderData";
+import { RestDataSource } from "./RestDataSource";
 
-
+const dataSource = new RestDataSource();
 // Action creator to load a data type
 export const loadData = (dataType) => ({
     // type field is the only requirement for an action creator
     type: ActionTypes.DATA_LOAD,
-    payload: {
-        dataType: dataType,
-        data: phData[dataType]
-    }
+    payload: dataSource.GetData(dataType).then(response => ({dataType, data: response.data}))
 });
