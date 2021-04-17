@@ -1,0 +1,9 @@
+export function ValidationError(props) {
+    if (props.errors) {
+        return props.errors.map(err =>
+            <h6 className="text-danger" key={err}>
+                {err}
+            </h6>);
+    }
+    return null;
+}
