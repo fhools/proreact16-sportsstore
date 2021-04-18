@@ -21,7 +21,7 @@ export const setSortKey = (newSortKey) =>
     ({ type: ActionTypes.DATA_SET_SORT_KEY, payload: newSortKey });
 
 export const placeOrder = (order) => ({
-    types: ActionTypes.DATA_STORE,
+    type: ActionTypes.DATA_STORE,
     payload: dataSource.StoreData(DataTypes.ORDERS, order).then(response => ({
         dataType: DataTypes.ORDERS, data: response.data
     }))

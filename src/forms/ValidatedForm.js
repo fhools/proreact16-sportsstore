@@ -47,7 +47,7 @@ export function ValidatedForm(props) {
     return (
         <React.Fragment>
             {props.formModel.map((m,i) => 
-                <InputField modelItem={m} forwardedRef={ (element) => (formElements.current[i] = element)}
+                <InputField modelItem={m} forwardedRef={ (element) => (formElements.current[m.name || m.label.toLowerCase()] = element)}
                     defaultAttrs={props.defaultAttrs}
                     errors={validationErrors[(m.name || m.label.toLowerCase())]}/>)}
             <div className="text-center">
