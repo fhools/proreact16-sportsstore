@@ -7,3 +7,4 @@ npm install axios
 npm install graphql
 npm install apollo-boost
 npm install @apollo/client 
+npm install @apollo/react-hoc

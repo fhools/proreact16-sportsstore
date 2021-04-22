@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useEffect } from "react";
 import {Switch, Route, Redirect } from "react-router-dom";
 import  { connect } from "react-redux";
@@ -10,7 +10,6 @@ import { CartDetails } from "./CartDetails";
 import { DataGetter } from "../data/DataGetter";
 import { Checkout } from "./Checkout";
 import { Thanks } from "./Thanks";
-import { render } from "@testing-library/react";
 
 const mapDispatchToProps = {
     ...ShopActions, ...CartActions
