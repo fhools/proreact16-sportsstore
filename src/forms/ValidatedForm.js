@@ -34,7 +34,6 @@ export function ValidatedForm(props) {
     }
 
     useEffect(() => {
-        console.log("latestValidationErrors:", validationErrors);
         if (Object.keys(validationErrors).length === 0 && isSubmitting) {
             const data = Object.assign(...Object.entries(formElements.current)
                 .map(e => 
@@ -47,10 +46,14 @@ export function ValidatedForm(props) {
     return (
         <React.Fragment>
             {props.formModel.map((m,i) => 
-                <InputField modelItem={m} forwardedRef={ (element) => (formElements.current[m.name || m.label.toLowerCase()] = element)}
+                <InputField modelItem={m} key={m.name || m.label.toLowerCase()} forwardedRef={ (element) => (formElements.current[m.name || m.label.toLowerCase()] = element)}
                     defaultAttrs={props.defaultAttrs}
                     errors={validationErrors[(m.name || m.label.toLowerCase())]}/>)}
             <div className="text-center">
+                <button className="btn btn-secondary m-1"
+                    onClick = { props.cancelCallback }>
+                        { props.cancelText || "Cancel"}
+                    </button>
                 <button className="btn btn-secondary m-1"
                     onClick= { handleSubmit }>
                     { props.submitText  || "Submit" }

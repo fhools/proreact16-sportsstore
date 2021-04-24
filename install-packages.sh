@@ -8,3 +8,5 @@ npm install graphql
 npm install apollo-boost
 npm install @apollo/client 
 npm install @apollo/react-hoc
+npm install @apollo/react-components
+npm install lodash

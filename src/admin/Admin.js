@@ -2,6 +2,11 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client/react";
 import { GraphQlUrl } from "../data/Urls";
 import { OrdersConnector } from "./OrdersConnector";
+import { Route, Redirect, Switch } from "react-router-dom";
+import { ToggleLink } from "../ToggleLink";
+import { ConnectedProducts } from "./ProductsConnector";
+import { ProductEditor } from "./ProductEditor";
+import { ProductCreator } from "./ProductCreator";
 
 const graphQlClient = new ApolloClient({
     uri: GraphQlUrl,
@@ -19,8 +24,18 @@ export function Admin(props) {
                 </div>
             </div>
             <div className= "row">
+                <div className="col-3 p-2">
+                    <ToggleLink to="/admin/orders">Orders</ToggleLink>
+                    <ToggleLink to="/admin/products">Products</ToggleLink>
+                </div>
                 <div className="col p-2">
-                    <OrdersConnector />
+                    <Switch>
+                        <Route path="/admin/orders" component={OrdersConnector}/>
+                        <Route path="/admin/products/create" component={ProductCreator}/>
+                        <Route path="/admin/products/:id" component={ProductEditor} />
+                        <Route path="/admin/products" component={ConnectedProducts} />
+                        <Redirect to="/admin/orders" />
+                    </Switch>
                 </div>
             </div>
         </ApolloProvider>

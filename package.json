@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.14",
+    "@apollo/react-components": "^4.0.0",
     "@apollo/react-hoc": "^4.0.0",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@testing-library/jest-dom": "^5.11.10",

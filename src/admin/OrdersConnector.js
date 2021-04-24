@@ -12,6 +12,13 @@ export const OrdersConnector = compose(
     graphql(ordersSummaryQuery,
     {
         options: (props) => ({ variables: vars }),
+        // these are props that get set
+        // in the targetcomponent
+        // props is our callback that is passed data from graphql client
+        // which was received from graphql server.
+        // the data pass in is the result of the graphql query
+        // we package up that data and also create dispatchers 
+        // used to refetch data based on new page or sort key updates.
         props: ({data: { loading, orders, refetch}}) => ({
             totalSize: loading ? 0 : orders.totalSize,
             orders: loading ? [] : orders.orders,
