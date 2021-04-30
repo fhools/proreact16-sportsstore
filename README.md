@@ -1,15 +1,12 @@
-# This is the Sports Store App from the book Pro React 16.
-# Code uses React 17 an functional components and hooks instead of class components.
+# Sports Store App from the book Pro React 16. 
+The book uses React 16 and class components. This code base uses React 17 and functional components with Hooks. No other big changes were made.
 
 # Build
 FIXME: something is wrong with apolloprovider. Don't use these scripts. 
 
 The install scripts don't work, some kind of issue with apollo dependnecies,
-// install-packages.sh
-// install-dev-packages.sh
 # Install dependecnies via package.json
 npm install
-
-# Start.
+# Builf and start local server on port 3000
 npm start
 
